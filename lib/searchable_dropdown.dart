@@ -129,7 +129,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
     final int index = _enabled ? (_selectedIndex ?? hintIndex) : hintIndex;
     Widget innerItemsWidget;
     if (items.isEmpty) {
-      innerItemsWidget = Container();
+      innerItemsWidget = Container(child: new Text('No items found'));
     } else {
       innerItemsWidget = IndexedStack(
         index: index,
