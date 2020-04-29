@@ -1,20 +1,15 @@
 #import "SearchableDropdownPlugin.h"
+#if __has_include(<searchable_dropdown/searchable_dropdown-Swift.h>)
+#import <searchable_dropdown/searchable_dropdown-Swift.h>
+#else
+// Support project import fallback if the generated compatibility header
+// is not copied when this plugin is created as a library.
+// https://forums.swift.org/t/swift-static-libraries-dont-copy-generated-objective-c-header/19816
+#import "searchable_dropdown-Swift.h"
+#endif
 
 @implementation SearchableDropdownPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  FlutterMethodChannel* channel = [FlutterMethodChannel
-      methodChannelWithName:@"searchable_dropdown"
-            binaryMessenger:[registrar messenger]];
-  SearchableDropdownPlugin* instance = [[SearchableDropdownPlugin alloc] init];
-  [registrar addMethodCallDelegate:instance channel:channel];
+  [SwiftSearchableDropdownPlugin registerWithRegistrar:registrar];
 }
-
-- (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-  if ([@"getPlatformVersion" isEqualToString:call.method]) {
-    result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
-  } else {
-    result(FlutterMethodNotImplemented);
-  }
-}
-
 @end
