@@ -936,6 +936,9 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   }
 
   Widget list() {
+    if(shownIndexes.length == 0) {
+      return Container(child: Text('No items found'));
+    }
     return new Expanded(
       child: Scrollbar(
         child: new ListView.builder(
