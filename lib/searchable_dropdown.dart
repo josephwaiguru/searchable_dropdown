@@ -83,6 +83,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final BoxConstraints menuConstraints;
   final bool readOnly;
   final Color menuBackgroundColor;
+  final Widget itemNotFound;
 
   /// Search choices Widget with a single choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
   ///
@@ -148,6 +149,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     BoxConstraints menuConstraints,
     bool readOnly = false,
     Color menuBackgroundColor,
+    Widget itemNotFound
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -181,6 +183,7 @@ class SearchableDropdown<T> extends StatefulWidget {
       menuConstraints: menuConstraints,
       readOnly: readOnly,
       menuBackgroundColor: menuBackgroundColor,
+      itemNotFound: itemNotFound,
     ));
   }
 
@@ -246,6 +249,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     BoxConstraints menuConstraints,
     bool readOnly = false,
     Color menuBackgroundColor,
+    Widget itemNotFound
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -279,6 +283,7 @@ class SearchableDropdown<T> extends StatefulWidget {
       menuConstraints: menuConstraints,
       readOnly: readOnly,
       menuBackgroundColor: menuBackgroundColor,
+      itemNotFound: itemNotFound,
     ));
   }
 
@@ -315,6 +320,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.menuConstraints,
     this.readOnly = false,
     this.menuBackgroundColor,
+    this.itemNotFound
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -355,6 +361,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.menuConstraints,
     this.readOnly = false,
     this.menuBackgroundColor,
+    this.itemNotFound
   })  : assert(items != null),
         assert(iconSize != null),
         assert(isExpanded != null),
@@ -485,6 +492,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
       displayMenu: displayMenu,
       menuConstraints: widget.menuConstraints,
       menuBackgroundColor: widget.menuBackgroundColor,
+      itemNotFound: widget.itemNotFound,
       callOnPop: () {
         if (!widget.dialogBox &&
             widget.onChanged != null &&
@@ -697,6 +705,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final BoxConstraints menuConstraints;
   final Function callOnPop;
   final Color menuBackgroundColor;
+  final Widget itemNotFound;
 
   DropdownDialog({
     Key key,
@@ -716,6 +725,7 @@ class DropdownDialog<T> extends StatefulWidget {
     this.menuConstraints,
     this.callOnPop,
     this.menuBackgroundColor,
+    this.itemNotFound
   })  : assert(items != null),
         super(key: key);
 
@@ -936,9 +946,9 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   }
 
   Widget list() {
-    print('search list ' + shownIndexes.length.toString());
+    
     if(shownIndexes.length == 0) {
-      return Container(child: Text('No items found'));
+      return Center(child: widget.itemNotFound);
     }
     return new Expanded(
       child: Scrollbar(
