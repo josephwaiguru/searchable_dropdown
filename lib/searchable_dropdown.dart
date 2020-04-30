@@ -936,6 +936,7 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
   }
 
   Widget list() {
+    print('search list ' + shownIndexes.length.toString());
     if(shownIndexes.length == 0) {
       return Container(child: Text('No items found'));
     }
