@@ -945,10 +945,22 @@ class _DropdownDialogState<T> extends State<DropdownDialog> {
     }
   }
 
-  Widget list() {
-    
-    if(shownIndexes.length == 0) {
-      return Center(child: widget.itemNotFound);
+  Widget list() {    
+
+    if(shownIndexes.length == 0 && widget.itemNotFound != null) {
+      return Center(child: prepareWidget(widget.itemNotFound,
+                parameter: selectedResult,
+                context: context, stringToWidgetFunction: (string) {
+                return (FlatButton.icon(
+                    onPressed: !valid
+                        ? null
+                        : () {
+                            pop();
+                            setState(() {});
+                          },
+                    icon: Icon(Icons.close),
+                    label: Text(string)));
+              }));
     }
     return new Expanded(
       child: Scrollbar(
