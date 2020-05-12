@@ -83,7 +83,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final BoxConstraints menuConstraints;
   final bool readOnly;
   final Color menuBackgroundColor;
-  final Widget itemNotFound;
+  final dynamic itemNotFound;
 
   /// Search choices Widget with a single choice that opens a dialog or a menu to let the user do the selection conveniently with a search.
   ///
@@ -149,7 +149,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     BoxConstraints menuConstraints,
     bool readOnly = false,
     Color menuBackgroundColor,
-    Widget itemNotFound
+    dynamic itemNotFound
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -249,7 +249,7 @@ class SearchableDropdown<T> extends StatefulWidget {
     BoxConstraints menuConstraints,
     bool readOnly = false,
     Color menuBackgroundColor,
-    Widget itemNotFound
+    dynamic itemNotFound
   }) {
     return (SearchableDropdown._(
       key: key,
@@ -705,7 +705,7 @@ class DropdownDialog<T> extends StatefulWidget {
   final BoxConstraints menuConstraints;
   final Function callOnPop;
   final Color menuBackgroundColor;
-  final Widget itemNotFound;
+  final dynamic itemNotFound;
 
   DropdownDialog({
     Key key,
