@@ -456,7 +456,7 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
 
   void _updateSelectedIndex() {
     if (!_enabled) {
-      return;
+     // return;
     }
     if (widget.multipleSelection) {
       selectedItems = List<int>.from(widget.selectedItems ?? []);
